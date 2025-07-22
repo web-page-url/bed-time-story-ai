@@ -183,7 +183,17 @@ const StoryStep: React.FC<StoryStepProps> = ({ storyText, onReset }) => {
             {/* Footer */}
             <div className="text-center mt-8 pt-6 border-t border-gray-200">
               <p className="text-sm text-gray-500">
-                ✨ {t('createdBy')} <span className="font-semibold text-indigo-600">Anubhav</span> ✨
+                ✨ Created with ❤️ by <span className="font-semibold text-indigo-600">Anubhav</span> ✨
+              </p>
+              <p className="text-xs text-gray-400 mt-2">
+                <a 
+                  href="https://bed-time-story-ai.vercel.app/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="hover:text-indigo-600 transition-colors"
+                >
+                  bed-time-story-ai.vercel.app
+                </a>
               </p>
             </div>
           </div>

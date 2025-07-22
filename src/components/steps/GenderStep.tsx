@@ -80,6 +80,13 @@ const GenderStep: React.FC<GenderStepProps> = ({ formData, setFormData, onNext, 
         <div className="mt-8">
           <ProgressBar current={2} total={5} />
         </div>
+
+        {/* Footer */}
+        <div className="text-center mt-6 pt-4 border-t border-gray-200">
+          <p className="text-xs text-gray-400">
+            ✨ Created with ❤️ by <span className="font-semibold text-indigo-600">Anubhav</span> ✨
+          </p>
+        </div>
       </Card>
     </div>
   );

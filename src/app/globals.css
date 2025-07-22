@@ -10,7 +10,22 @@
   --success: #10b981;
   --warning: #f59e0b;
   --error: #ef4444;
+  --card-bg: #ffffff;
+  --border-color: #e5e7eb;
+  --gradient-from: #667eea;
+  --gradient-to: #764ba2;
 }
+
+[data-theme="dark"] {
+  --background: #0f0f23;
+  --foreground: #e2e8f0;
+  --card-bg: #1e1e3f;
+  --border-color: #374151;
+  --gradient-from: #4c1d95;
+  --gradient-to: #7c3aed;
+}
+
+/* Removed automatic dark mode preference - users must manually toggle */
 
 @theme inline {
   --color-background: var(--background);
@@ -22,15 +37,10 @@
   --color-success: var(--success);
   --color-warning: var(--warning);
   --color-error: var(--error);
+  --color-card-bg: var(--card-bg);
+  --color-border: var(--border-color);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
@@ -114,4 +124,207 @@ textarea:focus {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+/* Dark mode scrollbar */
+[data-theme="dark"] ::-webkit-scrollbar-track {
+  background: #374151;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: #6b7280;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+/* Magical Sparkle Animations */
+@keyframes sparkle {
+  0%, 100% { 
+    opacity: 0;
+    transform: scale(0) rotate(0deg);
+  }
+  50% { 
+    opacity: 1;
+    transform: scale(1) rotate(180deg);
+  }
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+@keyframes float-sparkle {
+  0% { 
+    transform: translateY(100vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { 
+    transform: translateY(-100px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes magical-glow {
+  0%, 100% { 
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+    filter: hue-rotate(0deg);
+  }
+  25% { 
+    box-shadow: 0 0 30px rgba(236, 72, 153, 0.4);
+    filter: hue-rotate(90deg);
+  }
+  50% { 
+    box-shadow: 0 0 40px rgba(59, 130, 246, 0.5);
+    filter: hue-rotate(180deg);
+  }
+  75% { 
+    box-shadow: 0 0 30px rgba(16, 185, 129, 0.4);
+    filter: hue-rotate(270deg);
+  }
+}
+
+.animate-sparkle {
+  animation: sparkle 2s ease-in-out infinite;
+}
+
+.animate-twinkle {
+  animation: twinkle 1.5s ease-in-out infinite;
+}
+
+.animate-float-sparkle {
+  animation: float-sparkle 8s linear infinite;
+}
+
+.animate-magical-glow {
+  animation: magical-glow 3s ease-in-out infinite;
+}
+
+/* Sparkle container */
+.sparkle-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1000;
+  overflow: hidden;
+}
+
+.sparkle {
+  position: absolute;
+  color: #fbbf24;
+  font-size: 16px;
+  animation: float-sparkle 8s linear infinite;
+}
+
+.sparkle:nth-child(2n) {
+  color: #a78bfa;
+  animation-delay: -2s;
+  animation-duration: 6s;
+}
+
+.sparkle:nth-child(3n) {
+  color: #fb7185;
+  animation-delay: -4s;
+  animation-duration: 10s;
+}
+
+.sparkle:nth-child(4n) {
+  color: #34d399;
+  animation-delay: -6s;
+  animation-duration: 7s;
+}
+
+.sparkle:nth-child(5n) {
+  color: #60a5fa;
+  animation-delay: -1s;
+  animation-duration: 9s;
+}
+
+/* Light mode - ensure bright, vibrant colors */
+.bg-gradient-to-br {
+  background: linear-gradient(to bottom right, #a78bfa, #ec4899, #f472b6) !important;
+}
+
+/* Dark mode background gradients */
+[data-theme="dark"] .bg-gradient-to-br,
+.dark .bg-gradient-to-br {
+  background: linear-gradient(to bottom right, #1e1b4b, #312e81, #4c1d95) !important;
+}
+
+/* Light mode card backgrounds - ensure they're bright white */
+.bg-white {
+  background: #ffffff !important;
+  border: 1px solid #e5e7eb;
+}
+
+/* Dark mode card backgrounds */
+[data-theme="dark"] .bg-white,
+.dark .bg-white {
+  background: var(--card-bg) !important;
+  border: 1px solid var(--border-color);
+}
+
+/* Light mode text colors - ensure they're dark for contrast */
+.text-gray-800 {
+  color: #1f2937 !important;
+}
+
+.text-gray-600 {
+  color: #4b5563 !important;
+}
+
+.text-gray-500 {
+  color: #6b7280 !important;
+}
+
+.text-gray-400 {
+  color: #9ca3af !important;
+}
+
+/* Dark mode text colors */
+[data-theme="dark"] .text-gray-800,
+.dark .text-gray-800 {
+  color: #f1f5f9 !important;
+}
+
+[data-theme="dark"] .text-gray-600,
+.dark .text-gray-600 {
+  color: #cbd5e1 !important;
+}
+
+[data-theme="dark"] .text-gray-500,
+.dark .text-gray-500 {
+  color: #94a3b8 !important;
+}
+
+[data-theme="dark"] .text-gray-400,
+.dark .text-gray-400 {
+  color: #64748b !important;
+}
+
+/* Light mode - ensure bright button backgrounds */
+.bg-gray-50 {
+  background: #f9fafb !important;
+}
+
+.bg-gray-100 {
+  background: #f3f4f6 !important;
+}
+
+/* Dark mode button backgrounds */
+[data-theme="dark"] .bg-gray-50,
+.dark .bg-gray-50 {
+  background: #374151 !important;
+}
+
+[data-theme="dark"] .bg-gray-100,
+.dark .bg-gray-100 {
+  background: #4b5563 !important;
 }

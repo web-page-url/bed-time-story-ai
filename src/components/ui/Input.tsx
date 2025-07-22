@@ -32,7 +32,7 @@ const Input: React.FC<InputProps> = ({
     xl: 'px-8 py-5 text-xl',
   };
   
-  const baseClasses = 'w-full border-2 border-gray-200 rounded-2xl focus:border-indigo-500 focus:outline-none transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed';
+  const baseClasses = 'w-full border-2 border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded-2xl focus:border-indigo-500 dark:focus:border-indigo-400 focus:outline-none transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed placeholder-gray-500 dark:placeholder-gray-400';
   
   const classes = `${baseClasses} ${sizeClasses[size]} ${className}`;
   

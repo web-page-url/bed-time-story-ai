@@ -14,6 +14,10 @@ import LessonStep from './steps/LessonStep';
 import LoadingStep from './steps/LoadingStep';
 import StoryStep from './steps/StoryStep';
 
+// UI Components
+import DarkModeToggle from './ui/DarkModeToggle';
+import MagicalSparkles from './ui/MagicalSparkles';
+
 const BedtimeStoryGenerator: React.FC = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const [isGenerating, setIsGenerating] = useState(false);
@@ -64,72 +68,87 @@ const BedtimeStoryGenerator: React.FC = () => {
     });
   };
 
-  // Render current step
-  switch (currentStep) {
-    case 0:
-      return (
-        <AgeStep
-          formData={formData}
-          setFormData={setFormData}
-          onNext={nextStep}
-        />
-      );
-    
-    case 1:
-      return (
-        <GenderStep
-          formData={formData}
-          setFormData={setFormData}
-          onNext={nextStep}
-          onPrev={prevStep}
-        />
-      );
-    
-    case 2:
-      return (
-        <InterestsStep
-          formData={formData}
-          setFormData={setFormData}
-          onNext={nextStep}
-          onPrev={prevStep}
-        />
-      );
-    
-    case 3:
-      return (
-        <StyleStep
-          formData={formData}
-          setFormData={setFormData}
-          onNext={nextStep}
-          onPrev={prevStep}
-        />
-      );
-    
-    case 4:
-      return (
-        <LessonStep
-          formData={formData}
-          setFormData={setFormData}
-          onGenerate={handleGenerateStory}
-          onPrev={prevStep}
-          isGenerating={isGenerating}
-        />
-      );
-    
-    case 5:
-      return <LoadingStep />;
-    
-    case 6:
-      return (
-        <StoryStep
-          storyText={storyText}
-          onReset={resetForm}
-        />
-      );
-    
-    default:
-      return null;
-  }
+  // Render current step with magical effects
+  const renderCurrentStep = () => {
+    switch (currentStep) {
+      case 0:
+        return (
+          <AgeStep
+            formData={formData}
+            setFormData={setFormData}
+            onNext={nextStep}
+          />
+        );
+      
+      case 1:
+        return (
+          <GenderStep
+            formData={formData}
+            setFormData={setFormData}
+            onNext={nextStep}
+            onPrev={prevStep}
+          />
+        );
+      
+      case 2:
+        return (
+          <InterestsStep
+            formData={formData}
+            setFormData={setFormData}
+            onNext={nextStep}
+            onPrev={prevStep}
+          />
+        );
+      
+      case 3:
+        return (
+          <StyleStep
+            formData={formData}
+            setFormData={setFormData}
+            onNext={nextStep}
+            onPrev={prevStep}
+          />
+        );
+      
+      case 4:
+        return (
+          <LessonStep
+            formData={formData}
+            setFormData={setFormData}
+            onGenerate={handleGenerateStory}
+            onPrev={prevStep}
+            isGenerating={isGenerating}
+          />
+        );
+      
+      case 5:
+        return <LoadingStep />;
+      
+      case 6:
+        return (
+          <StoryStep
+            storyText={storyText}
+            onReset={resetForm}
+          />
+        );
+      
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <>
+      {/* Magical Sparkles Background */}
+      <MagicalSparkles />
+      
+      {/* Dark Mode Toggle */}
+      <DarkModeToggle />
+      
+      {/* Current Step Content */}
+      {renderCurrentStep()}
+    </>
+  );
 };
 
 export default BedtimeStoryGenerator;

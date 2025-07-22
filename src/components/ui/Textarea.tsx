@@ -28,7 +28,7 @@ const Textarea: React.FC<TextareaProps> = ({
     both: 'resize',
   };
   
-  const baseClasses = 'w-full px-6 py-4 border-2 border-gray-200 rounded-2xl focus:border-indigo-500 focus:outline-none transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed text-lg';
+  const baseClasses = 'w-full px-6 py-4 border-2 border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded-2xl focus:border-indigo-500 dark:focus:border-indigo-400 focus:outline-none transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed placeholder-gray-500 dark:placeholder-gray-400 text-lg';
   
   const classes = `${baseClasses} ${resizeClasses[resize]} ${className}`;
   

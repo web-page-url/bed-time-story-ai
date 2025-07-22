@@ -44,10 +44,10 @@ const Card: React.FC<CardProps> = ({
   };
   
   const backgroundClasses = {
-    white: 'bg-white',
-    gray: 'bg-gray-50',
-    gradient: 'bg-gradient-to-br from-white to-gray-50',
-    glass: 'glass',
+    white: 'bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700',
+    gray: 'bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700',
+    gradient: 'bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 border border-gray-200 dark:border-gray-700',
+    glass: 'glass backdrop-blur-lg bg-white/80 dark:bg-gray-800/80 border border-white/20 dark:border-gray-700/20',
   };
   
   const classes = `${backgroundClasses[background]} ${roundedClasses[rounded]} ${shadowClasses[shadow]} ${paddingClasses[padding]} ${className}`;
