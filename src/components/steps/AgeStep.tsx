@@ -9,12 +9,12 @@ import ProgressBar from '@/components/ui/ProgressBar';
 
 interface AgeStepProps {
   formData: FormData;
-  setFormData: (data: FormData) => void;
+  setFormData: React.Dispatch<React.SetStateAction<FormData>>;
   onNext: () => void;
 }
 
 const AgeStep: React.FC<AgeStepProps> = ({ formData, setFormData, onNext }) => {
-  const canProceed = formData.age !== '' && parseInt(formData.age) >= 2 && parseInt(formData.age) <= 15;
+  const canProceed = formData.age !== '' && parseInt(formData.age) >= 2 && parseInt(formData.age) <= 12;
   const [showError, setShowError] = React.useState(false);
 
   const handleAgeChange = (e: React.ChangeEvent<HTMLInputElement>) => {

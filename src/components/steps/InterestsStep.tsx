@@ -8,7 +8,7 @@ import ProgressBar from '@/components/ui/ProgressBar';
 
 interface InterestsStepProps {
   formData: FormData;
-  setFormData: (data: FormData) => void;
+  setFormData: React.Dispatch<React.SetStateAction<FormData>>;
   onNext: () => void;
   onPrev: () => void;
 }
