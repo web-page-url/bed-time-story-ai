@@ -8,7 +8,9 @@ const LoadingStep: React.FC = () => {
     "Sprinkling magic dust...",
     "Gathering story elements...",
     "Weaving words together...",
+    "Creating magical illustrations...",
     "Adding a touch of wonder...",
+    "Painting your story world...",
     "Almost ready for bedtime..."
   ];
 

@@ -1,5 +1,10 @@
 import BedtimeStoryGenerator from '@/components/BedtimeStoryGenerator';
+import ErrorBoundary from '@/components/ErrorBoundary';
 
 export default function Home() {
-  return <BedtimeStoryGenerator />;
+  return (
+    <ErrorBoundary>
+      <BedtimeStoryGenerator />
+    </ErrorBoundary>
+  );
 }

@@ -7,10 +7,11 @@ import Button from '@/components/ui/Button';
 
 interface StoryStepProps {
   storyText: string;
+  storyImage?: string;
   onReset: () => void;
 }
 
-const StoryStep: React.FC<StoryStepProps> = ({ storyText, onReset }) => {
+const StoryStep: React.FC<StoryStepProps> = ({ storyText, storyImage, onReset }) => {
   const [isReading, setIsReading] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const [speechManager, setSpeechManager] = useState<SpeechManager | null>(null);
@@ -81,6 +82,33 @@ const StoryStep: React.FC<StoryStepProps> = ({ storyText, onReset }) => {
           
           {/* Story Content */}
           <div className="p-6 md:p-8">
+            {/* Story Image */}
+            {storyImage && (
+              <div className="mb-8">
+                <Card 
+                  className="border-l-4 border-purple-400" 
+                  background="gradient"
+                  padding="lg"
+                >
+                  <div className="text-center">
+                    <img
+                      src={storyImage}
+                      alt="Story illustration"
+                      className="w-full max-w-md mx-auto rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300"
+                      onError={(e) => {
+                        console.error('Failed to load story image');
+                        e.currentTarget.style.display = 'none';
+                      }}
+                    />
+                    <p className="text-sm text-gray-500 mt-3 italic">
+                      ✨ {t('storyIllustration')} ✨
+                    </p>
+                  </div>
+                </Card>
+              </div>
+            )}
+
+            {/* Story Text */}
             <div className="mb-8">
               <Card 
                 className="border-l-4 border-amber-400" 

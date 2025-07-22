@@ -40,10 +40,10 @@ const AgeStep: React.FC<AgeStepProps> = ({ formData, setFormData, onNext }) => {
     setFormData({ ...formData, age: value });
 
     // Show error only if the number is complete and out of range
-    if (value.length >= 2 && (numValue < 2 || numValue > 15)) {
+    if (value.length >= 2 && (numValue < 2 || numValue > 12)) {
       setShowError(true);
-      setTimeout(() => setShowError(false), 9000);
-    } else if (numValue >= 2 && numValue <= 15) {
+      setTimeout(() => setShowError(false), 2000);
+    } else if (numValue >= 2 && numValue <= 12) {
       setShowError(false);
     } else {
       setShowError(false); // Don't show error for intermediate states like "1"
@@ -84,7 +84,7 @@ const AgeStep: React.FC<AgeStepProps> = ({ formData, setFormData, onNext }) => {
             {showError && (
               <div className="absolute -bottom-8 left-0 right-0 text-center">
                 <p className="text-red-500 text-sm font-medium animate-bounce">
-                  Please enter age between 2-15 years
+                  Please enter age between 2-12 years
                 </p>
               </div>
             )}

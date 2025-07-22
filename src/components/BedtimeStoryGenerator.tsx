@@ -38,13 +38,32 @@ const BedtimeStoryGenerator: React.FC = () => {
     setCurrentStep(currentStep - 1);
   };
 
+  const [storyImage, setStoryImage] = useState<string>('');
+
   const handleGenerateStory = async () => {
     setIsGenerating(true);
     setCurrentStep(5); // Loading step
 
     try {
+      // Generate the story first
       const story = await generateStory(formData);
       setStoryText(story);
+      
+      // Generate the story image
+      try {
+        const { generateStoryImage } = await import('@/lib/imageGeneration');
+        const imageResult = await generateStoryImage(formData, story);
+        
+        if (imageResult.success && imageResult.imageUrl) {
+          setStoryImage(imageResult.imageUrl);
+        } else {
+          console.warn('Image generation failed:', imageResult.error);
+        }
+      } catch (imageError) {
+        console.warn('Image generation module failed to load:', imageError);
+        // Continue without image - story is still valid
+      }
+      
       setCurrentStep(6); // Story display step
     } catch (error) {
       console.error('Error generating story:', error);
@@ -58,6 +77,7 @@ const BedtimeStoryGenerator: React.FC = () => {
   const resetForm = () => {
     setCurrentStep(0);
     setStoryText('');
+    setStoryImage('');
     setIsGenerating(false);
     setFormData({
       age: '',
@@ -128,6 +148,7 @@ const BedtimeStoryGenerator: React.FC = () => {
         return (
           <StoryStep
             storyText={storyText}
+            storyImage={storyImage}
             onReset={resetForm}
           />
         );
