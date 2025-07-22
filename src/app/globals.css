@@ -271,21 +271,45 @@ textarea:focus {
   border: 1px solid var(--border-color);
 }
 
-/* Light mode text colors - ensure they're dark for contrast */
+/* Light mode text colors - ensure they're black for visibility */
 .text-gray-800 {
-  color: #1f2937 !important;
+  color: #000000 !important;
 }
 
 .text-gray-600 {
-  color: #4b5563 !important;
+  color: #1f2937 !important;
 }
 
 .text-gray-500 {
-  color: #6b7280 !important;
+  color: #374151 !important;
 }
 
 .text-gray-400 {
-  color: #9ca3af !important;
+  color: #4b5563 !important;
+}
+
+/* Ensure all text is visible in light mode */
+.text-gray-700 {
+  color: #000000 !important;
+}
+
+/* Placeholder text visibility in light mode */
+::placeholder {
+  color: #6b7280 !important;
+  opacity: 1;
+}
+
+/* Input text color in light mode */
+input, textarea {
+  color: #000000 !important;
+}
+
+/* Ensure gradient text is visible */
+.gradient-text {
+  background: linear-gradient(135deg, #4c1d95, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 /* Dark mode text colors */
@@ -307,6 +331,26 @@ textarea:focus {
 [data-theme="dark"] .text-gray-400,
 .dark .text-gray-400 {
   color: #64748b !important;
+}
+
+[data-theme="dark"] .text-gray-700,
+.dark .text-gray-700 {
+  color: #e2e8f0 !important;
+}
+
+/* Dark mode input and textarea text colors */
+[data-theme="dark"] input,
+[data-theme="dark"] textarea,
+.dark input,
+.dark textarea {
+  color: #f1f5f9 !important;
+}
+
+/* Dark mode placeholder text */
+[data-theme="dark"] ::placeholder,
+.dark ::placeholder {
+  color: #9ca3af !important;
+  opacity: 1;
 }
 
 /* Light mode - ensure bright button backgrounds */

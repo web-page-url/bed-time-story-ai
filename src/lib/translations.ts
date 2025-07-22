@@ -4,7 +4,7 @@ export const TRANSLATIONS: Translations = {
   "en-US": {
     "ageTitle": "How old is your little one?",
     "ageSubtitle": "This helps us choose the perfect vocabulary and themes",
-    "agePlaceholder": "Enter age (2-12)",
+    "agePlaceholder": "Enter age (2-15)",
     "continueButton": "Continue",
     "step1of5": "Step 1 of 5",
     "genderTitle": "Tell us about your child",

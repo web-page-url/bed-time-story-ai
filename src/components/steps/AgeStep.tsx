@@ -14,7 +14,41 @@ interface AgeStepProps {
 }
 
 const AgeStep: React.FC<AgeStepProps> = ({ formData, setFormData, onNext }) => {
-  const canProceed = formData.age !== '' && parseInt(formData.age) >= 2 && parseInt(formData.age) <= 12;
+  const canProceed = formData.age !== '' && parseInt(formData.age) >= 2 && parseInt(formData.age) <= 15;
+  const [showError, setShowError] = React.useState(false);
+
+  const handleAgeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+
+    // Allow empty string for clearing
+    if (value === '') {
+      setFormData({ ...formData, age: '' });
+      setShowError(false);
+      return;
+    }
+
+    // Only allow numeric input (prevent non-numeric characters)
+    if (!/^\d+$/.test(value)) {
+      return;
+    }
+
+    // Allow intermediate states while typing (like "1" when typing "11")
+    // But validate the final number for the continue button
+    const numValue = parseInt(value);
+
+    // Allow input but show error if final number is out of range
+    setFormData({ ...formData, age: value });
+
+    // Show error only if the number is complete and out of range
+    if (value.length >= 2 && (numValue < 2 || numValue > 15)) {
+      setShowError(true);
+      setTimeout(() => setShowError(false), 9000);
+    } else if (numValue >= 2 && numValue <= 15) {
+      setShowError(false);
+    } else {
+      setShowError(false); // Don't show error for intermediate states like "1"
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-100 via-purple-50 to-pink-100 flex items-center justify-center p-4">
@@ -36,15 +70,24 @@ const AgeStep: React.FC<AgeStepProps> = ({ formData, setFormData, onNext }) => {
             <Input
               type="number"
               value={formData.age}
-              onChange={(e) => setFormData({...formData, age: e.target.value})}
+              onChange={handleAgeChange}
               placeholder={t('agePlaceholder')}
               min="2"
               max="12"
-              className="text-center font-bold text-2xl text-black"
+              className={`text-center font-bold text-2xl ${showError ? 'border-red-500 dark:border-red-400' : ''}`}
               autoFocus
               size="xl"
             />
             <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-indigo-500/10 to-purple-600/10 pointer-events-none"></div>
+
+            {/* Error Message */}
+            {showError && (
+              <div className="absolute -bottom-8 left-0 right-0 text-center">
+                <p className="text-red-500 text-sm font-medium animate-bounce">
+                  Please enter age between 2-15 years
+                </p>
+              </div>
+            )}
           </div>
 
           <Button
