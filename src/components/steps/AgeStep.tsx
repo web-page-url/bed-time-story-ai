@@ -1,0 +1,71 @@
+import React from 'react';
+import { Sparkles, ArrowRight } from 'lucide-react';
+import { FormData } from '@/types';
+import { t } from '@/lib/translations';
+import Card from '@/components/ui/Card';
+import Button from '@/components/ui/Button';
+import Input from '@/components/ui/Input';
+import ProgressBar from '@/components/ui/ProgressBar';
+
+interface AgeStepProps {
+  formData: FormData;
+  setFormData: (data: FormData) => void;
+  onNext: () => void;
+}
+
+const AgeStep: React.FC<AgeStepProps> = ({ formData, setFormData, onNext }) => {
+  const canProceed = formData.age !== '' && parseInt(formData.age) >= 2 && parseInt(formData.age) <= 12;
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-indigo-100 via-purple-50 to-pink-100 flex items-center justify-center p-4">
+      <Card className="max-w-md w-full">
+        <div className="text-center mb-8">
+          <div className="flex justify-center mb-4">
+            <div className="p-3 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full animate-float">
+              <Sparkles className="w-12 h-12 text-white" />
+            </div>
+          </div>
+          <h1 className="text-3xl font-bold text-gray-800 mb-2 gradient-text">
+            {t('ageTitle')}
+          </h1>
+          <p className="text-gray-600">{t('ageSubtitle')}</p>
+        </div>
+
+        <div className="space-y-6">
+          <div className="relative">
+            <Input
+              type="number"
+              value={formData.age}
+              onChange={(e) => setFormData({...formData, age: e.target.value})}
+              placeholder={t('agePlaceholder')}
+              min="2"
+              max="12"
+              className="text-center font-bold text-2xl"
+              autoFocus
+              size="xl"
+            />
+            <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-indigo-500/10 to-purple-600/10 pointer-events-none"></div>
+          </div>
+
+          <Button
+            onClick={onNext}
+            disabled={!canProceed}
+            variant="primary"
+            size="lg"
+            fullWidth
+            icon={ArrowRight}
+            iconPosition="right"
+          >
+            {t('continueButton')}
+          </Button>
+        </div>
+
+        <div className="mt-8">
+          <ProgressBar current={1} total={5} />
+        </div>
+      </Card>
+    </div>
+  );
+};
+
+export default AgeStep;
